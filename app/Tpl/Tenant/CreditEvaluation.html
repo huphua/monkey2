@@ -1,0 +1,79 @@
+<extend name="public:base" />
+<block name="title">诚信评估表 - 租户管理</block>
+<block name="head">
+
+</block>
+<block name="content">
+        <div class="m_top pt10 pl20 pr10 pb10 cw">    
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+                </li>
+                <li>
+                    <a href="{:U('/Tenant/Index')}">租户管理</a> <span class="divider">/</span>
+                </li>
+                <li class="active">诚信评估表<li/>
+            </ul>
+        </div>
+        <div class="m_content pl50 pr50 pt10">
+            <form class="well form-inline" action="{:U('/Tenant/NewCreditEvaluation')}" method="get">
+                <select class="span3" name="zhht">
+                    <option value="" selected="true">选择合同</option>
+                    <volist name="ht" id="vo">
+                        <option value="{$vo.ZHHT_HTBH}">合同编号 {$vo.ZHHT_HTBH} 承租人 {$vo.ZHHT_CCZF}</option>
+                    </volist>
+                </select>
+                <select class="span3" name="pgmb">
+                    <option value="" selected="true">选择项目评估模板</option>
+                    <volist name="xm" id="vo">
+                        <option value="{$vo.CXSZ_DJBH}">项目评估模板 {$vo.CXSZ_PGMBMC}</option>
+                    </volist>
+                </select>
+                <button type="submit" class="btn btn-primary btn-small"><i class="icon-plus icon-white"></i> 增加</button>
+            </form>
+            <if condition="$list">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="w160 pt10 pb10 f14 lt1 brf">项目编号</th>
+                            <th class="w160 pt10 pb10 f14 lt1 brf">项目名称</th>
+                            <th class="w160 pt10 pb10 f14 lt1 brf">项目得分</th>
+                            <th class="w160 pt10 pb10 f14 lt1 brf">租户姓名</th>
+                            <th class="w160 pt10 pb10 f14 lt1 brf">身份证号码</th>
+                            <th class="w160 pt10 pb10 f14 lt1 brf">审核状态</th>
+                            <th class="w160 pt10 pb10 f14 lt1 brf">审核人</th>
+                            <!--<th></th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.XPGD_XMBH}</td>
+                            <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.CXLX_XMMC}</td>
+                            <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.XPGD_XMDF|number_format}</td>
+                            <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.ZHXX_XM}</td>
+                            <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.CXPG_SFZH}</td>
+                            <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.STATU_NAME}</td>
+                            <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.CXPG_SHR}</td>
+                            <!--<td>
+                                    <div class="btn-group">
+                    <a class="btn btn-small" href="{:U('/Tenant/NewBlackList?zhbh='.$vo['CXPG_ZHBH'])}"><i class="icon-plus"></i>黑名单</a>
+                                    </div>
+                            </td>-->
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+                <div class="page">
+                    {$page}
+                </div>
+                <else />
+                <div class="alert alert-info">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <h4 class="alert-heading">提示!</h4>
+                    暂无记录！
+                </div>
+            </if>
+        </div>
+    <div class="m_bottom mb50"></div>
+</block>

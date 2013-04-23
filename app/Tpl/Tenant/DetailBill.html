@@ -1,0 +1,109 @@
+<extend name="public:base" />
+<block name="title">对账单详情 - 管理费对账单</block>
+<block name="head">
+
+</block>
+<block name="content">
+	<ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li><a href="{:U('/Tenant/Bill')}">管理费对账单</a> <span class="divider">/</span></li>
+		<li class="active">对账单详情<li/>
+	</ul>
+
+	<div>
+		<div class="page-header">
+			<h1>对账单详情<small>{$detail.FYLR_ID}</small></h1>
+		</div>
+		<h2>基本信息</h2>
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<th>单据编号</th>
+					<td>{$detail.FYLR_ID}</td>
+					<th>单据日期</th>
+					<td>{$detail.FYLR_DATE|date_format="Y-m-d"}</td>
+					<th>创建时间</th>
+					<td>{$detail.FYLR_CJSJ|date_format="Y-m-d H:i:s"}</td>
+					<th>制单人</th>
+					<td>{$detail.FYLR_ZDR}</td>
+				</tr>
+				<tr>
+					<th>项目编号</th>
+					<td>{$detail.FYLR_XMBH}</td>
+					<th>项目名称</th>
+					<td>{$detail.SFXM_XMMC}</td>
+					<th>小区编号</th>
+					<td>{$detail.FYLR_XQBH}</td>
+					<th>创建人</th>
+					<td>{$detail.FYLR_CJR}</td>
+				</tr>
+				<tr>
+					<th>区域名称</th>
+					<td>{$detail.QY_QYMC}</td>
+					<th>单据状态</th>
+					<td>{$detail.STATUS_NAME}</td>
+					<th>最后操作时间</th>
+					<td>{$detail.FYLR_CZSJ|date_format="Y-m-d H:i:s"}</td>
+					<th>交费期限</th>
+					<td>{$detail.FYLR_JFQX}</td>
+				</tr>
+				<tr>
+					<th>计费始日</th>
+					<td>{$detail.FYLR_JFSR|date_format="Y-m-d"}</td>
+					<th>计费止日</th>
+					<td>{$detail.FYLR_RQ|date_format="Y-m-d"}</td>
+					<th>总金额</th>
+					<td colspan="3">{$detail.FYLR_TOTAL|number_format=2}</td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<h2>费用信息</h2>
+	<if condition="$list">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>楼宇编号</th>
+					<th>楼宇名称</th>
+					<th>收费金额</th>
+					<th>收款方式</th>
+					<th>审核人</th>
+					<th>审核时间</th>
+					<th>单据状态</th>
+					<th>已付款</th>
+					<th>短信催款次数</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="list" id="vo">
+				<tr>
+					<td>{$vo.FYLRZB_LY}</td>
+					<td>{$vo.FYLRZB_LYMC}</td>
+					<td>{$vo.FYLRZB_JE|number_format=2}</td>
+					<td>{$vo.FYLRZB_SKFS}</td>
+					<td>{$vo.FYLRZB_SHR}</td>
+					<td>{$vo.FYLRZB_SHSJ|date_format="Y-m-d H:i:s"}</td>
+					<td>{$vo.STATUS_NAME}</td>
+					<td>{$vo.FYLRZB_YFK|number_format=2}</td>
+					<td>{$vo.FYLRZB_CKCS}</td>
+				</tr>
+				</volist>
+			</tbody>
+		</table>
+		<div>
+			{$page}
+		</div>
+	<else />
+		<div class="alert alert-info">
+			<a class="close" data-dismiss="alert">×</a>
+			<h4 class="alert-heading">提示!</h4>
+			暂无记录！
+		</div>
+	</if>
+		<div class="form-actions">
+			<a class="btn" href="javascript:history.go(-1);">返回</a>
+		</div>
+	</div>
+</block>

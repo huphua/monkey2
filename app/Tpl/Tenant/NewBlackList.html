@@ -1,0 +1,105 @@
+<extend name="public:base" />
+<block name="title">新增 - 黑名单 - 诚信评估表 - 租户管理</block>
+<block name="head">
+	<js file="/static/js/jquery-validate/jquery.validate.min.js" />
+	<js file="/static/js/jquery-validate/additional-methods.min.js" />
+	<js file="/static/js/jquery-validate/messages_zh.js" />
+	<script>
+		$(function(){
+                    jQuery.validator.addMethod("sfzcd",function(value,element){
+                        var vlen = value.length;
+                        return this.optional(element)||(vlen==15 || vlen ==18 );
+                    },"请输入有效的身份证长度(15或18位)");
+                    $('#NewBlackList').validate({
+				//'debug':true,
+                OnSubmit:true,
+				'errorLabelContainer':'#container',
+				'rules':{
+					<neq name="zhbh" value="0">
+					'zhbh':{
+						'required':true
+					},
+					</neq>
+					'sy':{
+						'required':true
+					},
+                    'HMD_SFZH':{
+                        'required':true,
+                       'sfzcd':true
+                    },
+                    'HMD_XM':{
+                        'required':true
+                    }
+				},
+				//ignore: '',
+				'messages':{
+				<neq name="zhbh" value="0">
+					'zhbh':{
+						'required':'租户必须选择！'
+					},
+					</neq>
+					'sy':{'required':'事由必须填写'},
+                    'HMD_SFZH':{'required':'身份证必须填写'},
+                    'HMD_XM':{'required':'姓名必须填写'}
+
+				}
+
+			});
+		});
+		
+	</script>
+</block>
+<block name="content">
+	<ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/Index')}">租户管理</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/CreditEvaluation')}">诚信评估表</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/BlackList')}">黑名单</a> <span class="divider">/</span>
+		</li>
+		<li class="active">新增<li/>
+	</ul>
+	<form id="NewBlackList" method="post" action="{:U('Tenant/SaveBlackList')}" class="form-horizontal">
+	<fieldset>
+		<legend>新增黑名单</legend>
+		<div class="alert alert-error" id="container"></div>
+        <div class="controls-row">
+          <label class="control-label">身份证</label>
+            <div class="controls">
+             <input class="controls-row" type="text" name="HMD_SFZH" id="HMD_SFZH"/>
+            </div>
+        </div>
+        <div class="controls-row">
+            <label class="control-label">姓名</label>
+            <div class="controls">
+                <input class="controls-row" type="text" name="HMD_XM" id="HMD_XM" />
+            </div>
+        </div>
+        <div class="controls-row">
+            <label class="control-label">性别</label>
+            <div class="controls">
+                <select class="controls-row" name="HMD_ZHXB">
+                    <option value="男" >男</option>
+                    <option value="女" >女</option>
+                </select>
+            </div>
+        </div>
+		<div class="control-group">
+			<label class="control-label" for="sy">事由</label>
+			<div class="controls">
+				<textarea class="span4" name="sy" rows="5" id="sy"></textarea>
+			</div>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">保存新增</button>
+			<a class="btn" href="javascript:history.go(-1);">返回</a>
+		</div>
+	</fieldset>
+</form>
+</block>

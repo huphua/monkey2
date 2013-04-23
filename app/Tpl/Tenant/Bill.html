@@ -1,0 +1,63 @@
+<extend name="public:base" />
+<block name="title">管理费对账单</block>
+<block name="head">
+
+</block>
+<block name="content">
+       <div class="m_top pt10 pl20 pr10 pb10 cw">
+           <ul class="breadcrumb">
+               <li>
+                   <a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+               </li>
+               <li class="active">管理费对账单<li/>
+           </ul>
+       </div>
+       <div class="m_content pl50 pr50 pt10">
+           <if condition="$list">
+               <table>
+                   <thead>
+                       <tr>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">流水号</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">单据编号</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">楼宇编号</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">楼宇名称</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">收费金额</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">收款方式</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">审核人</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">审核时间</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">单据状态</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">已付款</th>
+                           <th class="w160 pt10 pb10 f14 lt1 brf">短信催款次数</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                   <volist name="list" id="vo">
+                       <tr>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_LYLSH}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_ID}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_LY}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_LYMC}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_JE|number_format=2}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_SKFS}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_SHR}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_SHSJ|date_format="Y-m-d H:i:s"}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.STATUS_NAME}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_YFK|number_format=2}</td>
+                           <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.FYLRZB_CKCS}</td>
+                       </tr>
+                   </volist>
+                   </tbody>
+               </table>
+               <div class="page">
+                   {$page}
+               </div>
+               <else />
+               <div class="alert alert-info">
+                   <a class="close" data-dismiss="alert">×</a>
+                   <h4 class="alert-heading">提示!</h4>
+                   暂无记录！
+               </div>
+           </if>
+       </div>
+       <div class="m_bottom mb50"></div>
+</block>

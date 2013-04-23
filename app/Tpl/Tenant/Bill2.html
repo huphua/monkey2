@@ -1,0 +1,62 @@
+<extend name="public:base" />
+<block name="title">管理费对账单</block>
+<block name="head">
+
+</block>
+<block name="content">
+	<ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li class="active">管理费对账单<li/>
+	</ul>
+	<if condition="$list">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>单据编号</th>
+				<th>项目编号</th>
+				<th>项目名称</th>
+				<th>小区编号</th>
+				<th>区域名称</th>
+				<th>楼宇编号</th>
+				<th>楼宇名称</th>
+				<th>收费金额</th>
+				<th>总金额</th>
+				<th>计费起日</th>
+				<th>计费止日</th>
+				<th>单据状态</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist name="list" id="vo">
+			<tr>
+				<td>{$vo.FYLR_ID}</td>
+				<td>{$vo.FYLR_XMBH}</td>
+				<td>{$vo.SFXM_XMMC}</td>
+				<td>{$vo.FYLR_XQBH}</td>
+				<td>{$vo.QY_QYMC}</td>
+				<td>{$vo.FYLRZB_LY}</td>
+				<td>{$vo.LYB_MC}</td>
+				<td>{$vo.FYLRZB_JE|number_format=2}</td>
+				<td>{$vo.FYLR_TOTAL|number_format=2}</td>
+				<td>{$vo.FYLR_JFSR|date_format="Y-m-d"}</td>
+				<td>{$vo.FYLR_RQ|date_format="Y-m-d"}</td>
+				<td>{$vo.STATUS_NAME}</td>
+				<td><a class="btn btn-small" href="{:U('Tenant/DetailBill/',array('id'=>$vo['FYLR_ID']))}"><i class="icon-search icon-file"></i> 详情</a></td>
+			</tr>
+			</volist>
+		</tbody>
+	</table>
+	<div>
+		{$page}
+	</div>
+	<else />
+	<div class="alert alert-info">
+		<a class="close" data-dismiss="alert">×</a>
+		<h4 class="alert-heading">提示!</h4>
+		暂无记录！
+	</div>
+	</if>
+</block>

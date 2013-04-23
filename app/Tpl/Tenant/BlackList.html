@@ -1,0 +1,60 @@
+<extend name="public:base" />
+<block name="title">黑名单 - 租户管理</block>
+<block name="head">
+
+</block>
+<block name="content">
+      <div class="m_top pt10 pl20 pr10 pb10 cw">
+          <ul class="breadcrumb">
+              <li>
+                  <a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+              </li>
+              <li>
+                  <a href="{:U('/Tenant/Index')}">租户管理</a> <span class="divider">/</span>
+              </li>
+              <li class="active">黑名单<li/>
+          </ul>
+      </div>
+
+      <div class="m_content pl50 pr50 pt10">
+          <a class="btn" href="{:U('/Tenant/NewBlackList')}">增加黑名单</a>
+          <if condition="$list">
+              <table>
+                  <thead>
+                      <tr>
+                          <th class="w160 pt10 pb10 f14 lt1 brf">序号</th>
+                          <th class="w160 pt10 pb10 f14 lt1 brf">租户编号</th>
+                          <th class="w160 pt10 pb10 f14 lt1 brf">姓名</th>
+                          <th class="w160 pt10 pb10 f14 lt1 brf">身份证号码</th>
+                          <th class="w160 pt10 pb10 f14 lt1 brf">事由</th>
+                          <th class="w160 pt10 pb10 f14 lt1 brf">操作员</th>
+                          <th class="w160 pt10 pb10 f14 lt1 brf">操作时间</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  <volist name="list" id="vo" key="k">
+                      <tr>
+                          <td class="tl pt10 pb10 p130 f14 bdbc">{$currentpage*$pripage-$pripage+$k}</td>
+                          <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.hmd_jcpz}</td>
+                          <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.zhht_cczf}</td>
+                          <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.HMD_YZSHF}</td>
+                          <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.hmd_sy}</td>
+                          <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.hmd_czy}</td>
+                          <td class="tl pt10 pb10 p130 f14 bdbc">{$vo.hmd_czsj|date_format="Y-m-d H:i:s"}</td>
+                      </tr>
+                  </volist>
+                  </tbody>
+              </table>
+              <div class="page">
+                  {$page}
+              </div>
+              <else />
+              <div class="alert alert-info">
+                  <a class="close" data-dismiss="alert">×</a>
+                  <h4 class="alert-heading">提示!</h4>
+                  暂无记录！
+              </div>
+          </if>
+      </div>
+      <div class="m_bottom mb50"></div>
+</block>

@@ -1,0 +1,116 @@
+<extend name="public:base" />
+<block name="title">新增 - 诚信评估表 - 租户管理</block>
+<block name="head">
+	<js file="/static/js/jquery-validate/jquery.validate.min.js" />
+	<js file="/static/js/jquery-validate/additional-methods.min.js" />
+	<js file="/static/js/jquery-validate/messages_zh.js" />
+	<style>#container{display:none;}</style>
+	<script>
+		$(function(){
+			$('#NewCreditEvaluation').validate({
+				//'debug':true,
+				'errorLabelContainer':'#container',
+				'rules':{
+					<volist name="xm.item" id="vo">
+					"xmdf[{$vo.CXLX_XMBH}]":{
+						'required':true,
+						'min':-10,
+						'max':10
+					},
+					</volist>
+					'htbh':{
+						'required':true
+					}
+				},
+				//ignore: '',
+				'messages':{
+					<volist name="xm.item" id="vo">
+					"xmdf[{$vo.CXLX_XMBH}]":{
+						'required':'评估项目 {$vo.CXLX_XMMC} 的项目得分必须填写',
+						'min':"评估项目 {$vo.CXLX_XMMC} 的项目得分不能小于{0}分",
+                    	'max':"评估项目 {$vo.CXLX_XMMC} 的项目得分不能大于{0}分"
+					},
+					</volist>
+					'htbh':{'required':'必选选择一份合同'}
+				}
+
+			});
+		});
+		
+	</script>
+</block>
+<block name="content">
+	<ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/Index')}">租户管理</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/CreditEvaluation')}">诚信评估表</a> <span class="divider">/</span>
+		</li>
+		<li class="active">新增<li/>
+	</ul>
+	<form id="NewCreditEvaluation" method="post" action="{:U('Tenant/SaveCreditEvaluation')}" class="form-horizontal">
+		<input type="hidden" name="pgmb" value="{$xm.CXSZ_DJBH}" />
+	<fieldset>
+		<legend>新增诚信评估</legend>
+		<div class="alert alert-error" id="container"></div>
+		<div class="control-group">
+			<label class="control-label" for="htbh">合同编号</label>
+			<div class="controls">
+				<input type="text" name="htbh" value="{$ht.ZHHT_HTBH}" readonly="true" class="input-xlarge" id="htbh">
+			</div>
+		</div>
+		<div class="control-group czf">
+			<label class="control-label" for="zhbh">租户编号</label>
+			<div class="controls">
+				<input type="text" name="zhbh" value="{$ht.ZHHT_ZHBH}" readonly="true" class="input-xlarge" id="zhbh">
+			</div>
+		</div>
+		<div class="control-group czf">
+			<label class="control-label" for="czf">承租方</label>
+			<div class="controls">
+				<input type="text" name="czf" value="{$ht.ZHHT_CCZF}" readonly="true" class="input-xlarge" id="czf">
+			</div>
+		</div>
+	
+		<ul class="nav nav-tabs">
+			<volist name="xm.item" id="vo">
+			<li <eq name="i" value="1">class="active"</eq>><a href="#{$vo.CXLX_XMBH}" data-toggle="tab">{$vo.CXLX_XMMC}</a></li>
+			</volist>
+		</ul>
+
+		<div class="tab-content">
+			<volist name="xm.item" id="vo">
+			
+			<div class="tab-pane <eq name="i" value="1">active</eq>" id="{$vo.CXLX_XMBH}">
+				<div class="control-group">
+					<label class="control-label" for="{$vo.CXLX_XMBH}_xmdf">项目得分</label>
+					<div class="controls">
+						<input type="text" name="xmdf[{$vo.CXLX_XMBH}]" class="input-xlarge" id="{$vo.CXLX_XMBH}_xmdf">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="{$vo.CXLX_XMBH}_qkms">评估情况描述</label>
+					<div class="controls">
+						<textarea class="input-xlarge" name="qkms[{$vo.CXLX_XMBH}]" id="{$vo.CXLX_XMBH}_qkms" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="{$vo.CXLX_XMBH}_bz">备注</label>
+					<div class="controls">
+						<textarea class="input-xlarge" name="bz[{$vo.CXLX_XMBH}]" id="{$vo.CXLX_XMBH}_bz" rows="3"></textarea>
+					</div>
+				</div>
+			</div>
+			</volist>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">保存新增</button>
+			<a class="btn" href="{:U('/Tenant/CreditEvaluation')}">返回</a>
+		</div>
+	</fieldset>
+</form>
+</block>

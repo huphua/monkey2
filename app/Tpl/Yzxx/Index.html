@@ -1,0 +1,101 @@
+<extend name="public:base" />
+<block name="title">业主资料 - 租户管理</block>
+<block name="head">
+	<js file="/static/js/jquery-validate/jquery.validate.min.js" />
+	<js file="/static/js/jquery-validate/additional-methods.min.js" />
+	<js file="/static/js/jquery-validate/messages_zh.js" />
+	<script>
+		$(function(){
+			$('#UpdateYzxx').validate({
+				//'debug':true,
+				'errorLabelContainer':'#container',
+				'rules':{
+					'YZXX_LXDH':{
+						'required':true
+					},
+					'YZXX_LXSJ':{
+						'required':true
+					},
+					'YZXX_JJLXR':{
+						'required':true
+					},
+					'YZXX_JJLXDH':{
+						'required':true
+					},
+					'YZXX_DZYX':{
+						'email':true
+					}
+				},
+				//ignore: '',
+				'messages':{
+					'YZXX_LXDH':{'required':'联系电话 必须填写'},
+					'YZXX_LXSJ':{'required':'联系手机 必须填写'},
+					'YZXX_JJLXR':{'required':'紧急联系人 必须填写'},
+					'YZXX_JJLXDH':{'required':'紧急联系人电话 必须填写'},
+					'YZXX_DZYX':{'email':'电子邮箱格式错误'}
+				}
+
+			});
+		});
+		
+	</script>
+</block>
+<block name="content">
+	<ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li class="active">业主资料<li/>
+	</ul>
+	<if condition="$audi">
+	<div class="alert">
+		<a class="close" data-dismiss="alert">×</a>
+		<strong>注意！</strong> 您修改的资料还在审核中！
+	</div>
+	<else />
+	<div class="alert alert-info">
+		<a class="close" data-dismiss="alert">×</a>
+		<strong>提示！</strong> 修改后的资料需要审核！
+	</div>
+	</if>
+	<form id="UpdateYzxx" method="post" action="{:U('/Yzxx/Save')}" class="form-horizontal">
+	<fieldset>
+		<legend>联系资料</legend>
+		<div class="alert alert-error" id="container"></div>
+		<div class="control-group">
+			<label class="control-label" for="YZXX_LXDH">联系电话</label>
+			<div class="controls">
+				<input type="text" value="{$yzxx.YZXX_LXDH}" name="YZXX_LXDH" class="input-xlarge" id="YZXX_LXDH">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="YZXX_LXSJ">联系手机</label>
+			<div class="controls">
+				<input type="text" value="{$yzxx.YZXX_LXSJ}" name="YZXX_LXSJ" class="input-xlarge" id="YZXX_LXSJ">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="YZXX_JJLXR">紧急联系人</label>
+			<div class="controls">
+				<input type="text" value="{$yzxx.YZXX_JJLXR}" name="YZXX_JJLXR" class="input-xlarge" id="YZXX_JJLXR">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="YZXX_JJLXDH">紧急联系人电话</label>
+			<div class="controls">
+				<input type="text" value="{$yzxx.YZXX_JJLXDH}" name="YZXX_JJLXDH" class="input-xlarge" id="YZXX_JJLXDH">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="YZXX_DZYX">电子邮箱</label>
+			<div class="controls">
+				<input type="text" value="{$yzxx.YZXX_DZYX}" name="YZXX_DZYX" class="input-xlarge" id="YZXX_DZYX">
+			</div>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">保存资料</button>
+			<a class="btn" href="{:U('/')}">返回</a>
+		</div>
+	</fieldset>
+	</form>
+</block>

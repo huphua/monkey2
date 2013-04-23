@@ -1,0 +1,61 @@
+<extend name="public:base" />
+<block name="title">设置 - 租户管理</block>
+<block name="head">
+	<js file="/static/js/jquery-validate/jquery.validate.min.js" />
+	<js file="/static/js/jquery-validate/additional-methods.min.js" />
+	<js file="/static/js/jquery-validate/messages_zh.js" />
+	<script>
+		$(function(){
+			$('#NewBlackList').validate({
+				//'debug':true,
+				'errorLabelContainer':'#container',
+				'rules':{
+					'sjhm':{
+						'required':true,
+						'minLength':11
+					}
+				},
+				//ignore: '',
+				'messages':{
+					'sjhm':{'required':'手机号码必须填写'}
+				}
+
+			});
+		});
+		
+	</script>
+</block>
+<block name="content">
+        <div class="m_top pt10 pl20 pr10 pb10 cw">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+                </li>
+                <li class="active">设置<li/>
+            </ul>
+        </div>
+       <div class="m_content pl50 pr50 pt10">
+           <form id="NewBlackList" method="post" action="{:U('Yzxx/SaveSetting')}" class="form-horizontal">
+               <fieldset>
+                   <legend>设置</legend>
+                   <div class="alert alert-error" id="container"></div>
+                   <div class="control-group">
+                       <label class="control-label" for="sjhm">手机号码</label>
+                       <div class="controls">
+                           <input type="text" maxlength="11" name="sjhm" value="{$sz.YZSZ_SJHM}" class="input-xlarge" id="sjhm" />
+                       </div>
+                   </div>
+                   <div class="control-group">
+                       <label class="control-label" for="dxtx">短信提醒</label>
+                       <div class="controls">
+                           <input type="checkbox" name="dxtx" value="1" <eq name="sz.YZSZ_DXTX" value="1"> checked="true"</eq>class="input-xlarge" id="dxtx" />
+                       </div>
+                   </div>
+                   <div class="form-actions">
+                       <button type="submit" class="btn btn-primary">保存设置</button>
+                       <a class="btn" href="javascript:history.go(-1);">返回</a>
+                   </div>
+               </fieldset>
+       </div>
+       <div class="m_bottom mb50"></div>
+</block>

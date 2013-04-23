@@ -1,0 +1,23 @@
+$(function(){
+    $('#loginform').validate({        
+        'rules':{
+            'YZXX_SFZH':{
+                'required':true
+            },
+            'YZXX_MM':{
+                'required':true
+            }
+        },
+        'messages':{
+            'YZXX_SFZH':{
+                'required':'请输入你的身份证号码'
+            },
+           'YZXX_MM':{
+               'required':'请输入你的网站登录密码'
+           }
+        },
+        errorPlacement:function(error,element){
+            error.appendTo(element.parent());
+        }
+    });
+});

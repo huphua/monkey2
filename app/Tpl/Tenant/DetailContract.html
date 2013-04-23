@@ -1,0 +1,112 @@
+<extend name="public:base" />
+<block name="title">{$detail.ZHHT_HTMC} 合同详情 - 合同列表 - 租户管理</block>
+<block name="head">
+
+</block>
+<block name="content">
+	<ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/Index')}">租户管理</a> <span class="divider">/</span>
+		</li>
+		<li><a href="{:U('/Tenant/Contract')}">合同列表</a> <span class="divider">/</span></li>
+		<li class="active">合同详情<li/>
+	</ul>
+
+	<div>
+		<div class="page-header">
+			<h1>{$detail.ZHHT_HTMC}<small>合同详情</small></h1>
+		</div>
+		<h2>基本信息</h2>
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<th>单据编号</th>
+					<td>{$detail.ZHHT_DJBH}</td>
+					<th>单据日期</th>
+					<td>{$detail.ZHHT_DJRQ|date_format="Y-m-d"}</td>
+					<th>入住日期</th>
+					<td>{$detail.ZHHT_RZRQ|date_format="Y-m-d"}</td>
+				</tr>
+				<tr>
+					<th>合同编号</th>
+					<td>{$detail.ZHHT_HTBH}</td>
+					<th>合同名称</th>
+					<td>{$detail.ZHHT_HTMC}</td>
+					<th>合同类型</th>
+					<td>{$detail.ZHHT_HTLX}</td>
+					</tr>
+				<tr>
+					<th>签订日期</th>
+					<td>{$detail.ZHHT_QDRQ|date_format="Y-m-d"}</td>
+					<th>合同起始</th>
+					<td>{$detail.ZHHT_HTQS|date_format="Y-m-d"}</td>
+					<th>合同终止</th>
+					<td>{$detail.ZHHT_HTZZ|date_format="Y-m-d"}</td>
+				</tr>
+				<tr>
+					<th>结算方式</th>
+					<td>{$detail.ZHHT_JSFS}</td>
+					<th>押金</th>
+					<td>{$detail.ZHHT_YJ|number_format=2} 元</td>
+					<th>违约金</th>
+					<td>{$detail.ZHHT_WYJ|number_format=2} 元</td>
+				</tr>
+				<tr>
+					<th>合同租金</th>
+					<td>{$detail.ZHHT_HTZJ|number_format=2} 元</td>
+					<th>合同总额</th>
+					<td>{$detail.ZHHT_HTZE|number_format=2} 元</td>
+					<th>合同提醒天数</th>
+					<td>{$detail.ZHHT_HTTXRQ}</td>
+				</tr>
+			</tbody>
+		</table>
+		<h2>租户信息</h2>
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<th>租户编号</th>
+					<td>{$detail.ZHHT_ZHBH}</td>
+					<th>承租方</th>
+					<td>{$detail.ZHHT_CZF}</td>
+					<th>身份证号码</th>
+					<td>{$detail.ZHHT_SFZHM}</td>
+				</tr>
+				<tr>
+					<th>联系电话</th>
+					<td>{$detail.ZHHT_LXDZ}</td>
+					<th>地址</th>
+					<td colspan="3">{$detail.ZHHT_CZFDZ}</td>
+				</tr>
+			</tbody>
+		</table>
+		<h2>出租房屋信息</h2>
+		<table class="table table-bordered">
+			<thead>
+				<th>房号</th>
+				<th>区域名称</th>
+				<th>楼宇名称</th>
+				<th>单价</th>
+				<th>起始日期</th>
+				<th>截止日期</th>
+				<th>总租期（天）</th>
+				<th>总租期（月）</th>
+			</thead>
+			<volist name="detail.house" id="vo">
+			<tbody>
+				<td>{$vo.HHTD_FH}</td>
+				<td>{$vo.HHTD_QXMC}</td>
+				<td>{$vo.HHTD_LYMC}</td>
+				<td>{$vo.HHTD_DJ|number_format=2}</td>
+				<td>{$vo.HHTD_JZSSRQ|date_format="Y-m-d"}</td>
+				<td>{$vo.HHTD_JZJZRQ|date_format="Y-m-d"}</td>
+				<td>{$vo.HHTD_ZZQT}</td>
+				<td>{$vo.HHTD_ZZQY}</td>
+			</tbody>
+			</volist>
+		</table>
+	</div>
+</block>

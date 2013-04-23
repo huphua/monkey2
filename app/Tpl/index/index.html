@@ -1,0 +1,31 @@
+<extend name="public:base" />
+<block name="title">首页<neq name="msg|count" value="0">({$msg|count})</neq></block>
+<block name="content">
+  <div class="m_top pt10 pl20 pr10 pb10 cw">
+     欢迎使用业主管理系统！ <!--<i class="bhome_icon vt"></i><a href="#" class="cw">首页</a> <span class="pl5 pr5">/</span> <a href="#" class="cw">租户管理</a> <span class="pl5 pr5">/</span> <a href="#" class="cw">合同列表</a>--> 
+  </div>
+  <div class="m_content pl50 pr50 pt10">
+    <table>
+      <thead>
+        <tr>
+          <th class="w160 pt10 pb10 f14 lt1 brf">提醒类型</th>           
+          <th class="w160 pt10 pb10 f14 lt1 brf">到期时间</th>            
+          <th class="pt10 pb10 f14 lt1">提醒内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <volist name="msg" id="vo">
+        <tr>
+          <td class="tl pt10 pb10 p130 f14 bdbc"><i class="<switch name="vo.type"><case value="租户合同">ht_icon</case><case value="黑名单">hm_icon</case><case value="管理费欠费">fy_icon</case></switch> mr5"></i>{$vo.type}</td>
+          <td class="tc f14 bdbc"><if condition="$vo.expired neq 0">{$vo.expired|date='Y-m-d',###}<else />无</if></td>
+          <td class="tl p10 f14 bdbc">{$vo.info}<neq name="vo.url" vlaue=''><a href="{$vo.url}" class="more p5 m15 f12 cw">详情</a></neq></td>
+        </tr>
+        </volist>
+      </tbody>
+    </table>
+    <!--
+    <div class="page tr p20"><span class="bsc c3" style="padding:3px 5px;">44 条记录 1/3 页</span><a href="#" class="bsc  c3 ml5 ml5">下一页</a><a href="#" class="bsc  c3 ml5 ml5">1</a><a href="#" class="bsc c3 ml5 ml5 a_h">2</a><a href="#" class="bsc  c3 ml5 ml5">3</a></div>
+    -->
+  </div>
+  <div class="m_bottom mb50"></div>
+</block>

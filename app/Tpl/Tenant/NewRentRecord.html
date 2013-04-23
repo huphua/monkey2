@@ -1,0 +1,155 @@
+<extend name="public:base" />
+<block name="title">填写租金记录 - 租金记录 - 租户管理</block>
+<block name="head">
+	<js file="/static/js/jquery-validate/jquery.validate.min.js" />
+	<js file="/static/js/jquery-validate/additional-methods.min.js" />
+	<js file="/static/js/jquery-validate/messages_zh.js" />
+	<js file="/static/js/My97DatePicker/WdatePicker.js" />
+	<script>
+		$(function(){
+			$('#NewRentRecord').validate({
+				//'debug':true,
+				'errorLabelContainer':'#container',
+				'rules':{
+					'ZJJL_HTBH':{
+						'required':true
+					},
+					'ZJJL_ZJQR':{
+						'required':true
+					},
+					'ZJJL_ZJZR':{
+						'required':true
+					},
+					'ZJJL_ZJ':{
+						'required':true,
+						'number':true,
+					},
+					'ZJJL_DF':{
+						'number':true
+					},
+					'ZJJL_SF':{
+						'number':true
+					},
+					'ZJJL_SFDS':{
+						'number':true
+					},
+					'ZJJL_DFDS':{
+						'number':true
+					},
+					'ZJJL_JFSJ':{
+						'required':true
+					}
+				},
+				//ignore: '',
+				'messages':{
+					'ZJJL_HTBH':{'required':'必选选择一份合同'},
+					'ZJJL_ZJ':{'required':'租金必须填写','number':'租金必须是数字'},
+					'ZJJL_DF':{'number':'电费必须是数字'},
+					'ZJJL_SF':{'number':'水费必须是数字'},
+					'ZJJL_SFDS':{'number':'水表读数必须是数字'},
+					'ZJJL_DFDS':{'number':'电表读数必须是数字'},
+					'ZJJL_JFSJ':{'required':'交费日期必须填写'},
+					'ZJJL_ZJQR':{'required':'租金起始日期必须填写'},
+					'ZJJL_ZJZR':{'required':'租金结束日期必须填写'}
+				}
+
+			});
+		});
+		
+	</script>
+</block>
+<block name="content">
+	<ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/Index')}">租户管理</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/RentRecord')}">租金记录</a> <span class="divider">/</span>
+		</li>
+		<li class="active">填写租金记录<li/>
+	</ul>
+	<form id="NewRentRecord" method="post" action="{:U('Tenant/SaveRentRecord')}" class="form-horizontal">
+	<fieldset>
+		<legend>填写租金记录</legend>
+		<div class="alert alert-error" id="container"></div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_HTBH">选择合同</label>
+			<div class="controls">
+				<select class="span3" name="ZJJL_HTBH" id="ZJJL_HTBH">
+					<option value="" selected="true">选择合同</option>
+					<volist name="ht" id="vo">
+					<option value="{$vo.ZHHT_HTBH}">合同编号 {$vo.ZHHT_HTBH} 承租人 {$vo.ZHHT_CCZF}</option>
+					</volist>
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_JFSJ">交费日期</label>
+			<div class="controls">
+				<input type="text" name="ZJJL_JFSJ" class="input-xlarge Wdate" readonly="true" onfocus="WdatePicker();" id="ZJJL_JFSJ">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_ZJ">租金</label>
+			<div class="controls">
+				<input type="text" name="ZJJL_ZJ" class="input-xlarge" id="ZJJL_ZJ">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_ZJQR">交费周期</label>
+			<div class="controls">
+				<input type="text" readonly="true" onfocus="WdatePicker()" name="ZJJL_ZJQR" class="Wdate input-xlarge" id="ZJJL_ZJ"> - <input type="text" readonly="true" onfocus="WdatePicker();" name="ZJJL_ZJZR" class="Wdate input-xlarge" id="ZJJL_ZJZR">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_SF">水费</label>
+			<div class="controls">
+				<input type="text" name="ZJJL_SF" class="input-xlarge" id="ZJJL_SF">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_SFDS">水表读数</label>
+			<div class="controls">
+				<input type="text" name="ZJJL_SFDS" class="input-xlarge" id="ZJJL_SFDS">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_SFRQ">水费抄表日期</label>
+			<div class="controls">
+				<input type="text" name="ZJJL_SFRQ" class="input-xlarge Wdate" readonly="true" onfocus="WdatePicker();" id="ZJJL_SFRQ">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_DF">电费</label>
+			<div class="controls">
+				<input type="text" name="ZJJL_DF" class="input-xlarge" id="ZJJL_DF">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_DFDS">电表读数</label>
+			<div class="controls">
+				<input type="text" name="ZJJL_DFDS" class="input-xlarge" id="ZJJL_DFDS">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_DFRQ">电费抄表日期</label>
+			<div class="controls">
+				<input type="text" name="ZJJL_DFRQ" class="input-xlarge Wdate" readonly="true" onfocus="WdatePicker();" id="ZJJL_DFRQ">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="ZJJL_BZ">备注</label>
+			<div class="controls">
+				<textarea class="span4" name="ZJJL_BZ" rows="5" id="ZJJL_BZ"></textarea>
+			</div>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">保存新增</button>
+			<a class="btn" href="{:U('/Tenant/CreditEvaluation')}">返回</a>
+		</div>
+	</fieldset>
+	</form>
+</block>

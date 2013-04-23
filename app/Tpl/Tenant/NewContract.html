@@ -1,0 +1,146 @@
+<extend name="public:base" />
+<block name="title">新增合同 - 合同列表 - 租户管理</block>
+<block name="head">
+	<import type="css" file="datepicker" basepath="/static/css" />
+	<import type="js" file="bootstrap-datepicker" basepath="/static/js" />
+	<script>
+		$(function(){
+			$('#dp3').datepicker({format: 'yyyy-mm-dd'});
+			$('#dp4').datepicker({format: 'yyyy-mm-dd'});
+		});
+	</script>
+</block>
+<block name="content">
+	<ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/Index')}">租户管理</a> <span class="divider">/</span>
+		</li>
+		<li><a href="{:U('/Tenant/Contract')}">合同列表</a> <span class="divider">/</span></li>
+		<li class="active">新增合同<li/>
+	</ul>
+
+	<div>
+		<form class="form-horizontal" method="post" action="{:U('SaveContract')}">
+			<ul class="nav nav-tabs">
+			  <li class="active"><a href="#base_info" data-toggle="tab">基本信息</a></li>
+			  <li><a href="#house_info" data-toggle="tab">房屋信息</a></li>
+			  <li><a href="#tenant_info" data-toggle="tab">租户信息</a></li>
+			  <li><a href="#other_info" data-toggle="tab">其他</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="base_info">
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label" for="htbh">合同编号</label>
+							<div class="controls">
+								<input type="text" name="ZHHT_HTBH" class="input-xlarge" id="htbh">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="htmc">合同名称</label>
+							<div class="controls">
+								<input type="text" name="ZHHT_HTMC" class="input-xlarge" id="htmc">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="htlx">合同类型</label>
+							<div class="controls">
+								<select name="ZHHT_HTLX" id="htlx">
+									<option value="" selected="true">-------------------------------</option>
+									<option value="定期租凭">定期租凭</option>
+									<option value="不定期租凭">不定期租凭</option>
+								</select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="htqs">合同起始</label>
+							<div class="controls">
+								<div class="input-append date" id="dp3" data-date="{$Think.now|strtotime|date='Y-m-d',###}" data-date-format="yyyy-mm-dd">
+									<input type="text" value="{$Think.now|strtotime|date='Y-m-d',###}" readonly="true" name="ZHHT_HTQS" class="input-medium" id="htqs">
+									<span class="add-on"><i class="icon-calendar"></i></span>
+		              			</div>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="htzz">合同终止</label>
+							<div class="controls">
+								<div class="input-append date" id="dp4" data-date="{$Think.now|strtotime|date='Y-m-d',###}" data-date-format="yyyy-mm-dd">
+									<input type="text" value="{$Think.now|strtotime|date='Y-m-d',###}" readonly="true" name="ZHHT_HTZZ" class="input-medium" id="htzz">
+									<span class="add-on"><i class="icon-calendar"></i></span>
+		              			</div>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="jsfs">结算方式</label>
+							<div class="controls">
+								<select name="ZHHT_JSFS" id="jsfs">
+									<option value="" selected="true">-------------------------------</option>
+									<option value="现金收费">现金收费</option>
+									<option value="银行划账">银行划账</option>
+								</select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="yj">押金</label>
+							<div class="controls">
+								<div class="input-prepend input-append">
+				                	<span class="add-on">￥</span>
+				                	<input class="span2" id="yj" name="ZHHT_YJ" type="text">
+				                	<span class="add-on">.00</span>
+				              	</div>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="tab-pane" id="house_info">
+				</div>
+				<div class="tab-pane" id="tenant_info">
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label" for="zhbh">租户编号</label>
+							<div class="controls">
+								<div class="input-append">
+									<input type="text" readonly="true" name="ZHHT_ZHBH" class="input-xlarge" id="zhbh">
+									<button onclick="loadTenant();" class="btn"><i class="icon-user"></i> 导入租客信息</button>
+								</div>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="czf">承租方</label>
+							<div class="controls">
+								<input type="text" readonly="true" readonly="true" name="ZHHT_CZF" class="input-xlarge" id="czf">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="sfzhm">身份证号码</label>
+							<div class="controls">
+								<input type="text" readonly="true" name="ZHHT_SFZHM" class="input-xlarge" id="sfzhm">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="lxdz">联系电话</label>
+							<div class="controls">
+								<input type="text" readonly="true" name="ZHHT_LXDZ" class="input-xlarge" id="lxdz">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="czfdz">联系地址</label>
+							<div class="controls">
+								<input type="text" readonly="true" name="ZHHT_CZFDZ" class="input-xlarge" id="czfdz">
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="tab-pane" id="other_info">
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">保存合同</button>
+				<button class="btn" onclick="history.go(-1);">返回</button>
+			</div>
+		</form>
+	</div>
+</block>

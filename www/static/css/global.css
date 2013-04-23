@@ -1,0 +1,5 @@
+body{background:#FFF;padding:10px;font-size:14px;padding-top: 60px;}
+#container{display:none;}/**/
+table.table_form{}
+table.table_form td{padding:2px 4px;font-size:14px;}
+table.table_form td.th{text-align:right;font-weight:bold;}

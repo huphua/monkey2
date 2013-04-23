@@ -1,0 +1,48 @@
+<extend name="public:base" />
+<block name="title">租户管理</block>
+<block name="head">
+
+</block>
+<block name="content">
+	<ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li class="active">租户管理<li/>
+	</ul>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>项目编号</th>
+				<th>项目名称</th>
+				<th>项目得分</th>
+				<th>租户姓名</th>
+				<th>身份证号码</th>
+				<th>审核状态</th>
+				<th>审核人</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist name="list" id="vo">
+			<tr>
+				<td>{$vo.XPGD_XMBH}</td>
+				<td>{$vo.CXLX_XMMC}</td>
+				<td>{$vo.XPGD_XMDF|number_format}</td>
+				<td>{$vo.ZHXX_XM}</td>
+				<td>{$vo.CXPG_SFZH}</td>
+				<td>{$vo.STATU_NAME}</td>
+				<td>{$vo.CXPG_SHR}</td>
+				<td>
+					<div class="btn-group">
+                    	<a class="btn btn-small" href="{:U('/Tenant/NewBlackList?zhbh='.$vo['CXPG_ZHBH'])}"><i class="icon-plus"></i>黑名单</a>
+					</div>
+				</td>
+			</tr>
+			</volist>
+		</tbody>
+	</table>
+	<div>
+		{$page}
+	</div>
+</block>

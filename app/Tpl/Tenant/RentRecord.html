@@ -1,0 +1,66 @@
+<extend name="public:base" />
+<block name="title">租金记录 - 租户管理</block>
+<block name="head">
+
+</block>
+<block name="content">
+    <div class="m_top pt10 pl20 pr10 pb10 cw">
+    <ul class="breadcrumb">
+		<li>
+			<a href="{:U('/Index')}">首页</a> <span class="divider">/</span>
+		</li>
+		<li>
+			<a href="{:U('/Tenant/Index')}">租户管理</a> <span class="divider">/</span>
+		</li>
+		<li >租金记录<li/>
+	</ul>
+    </div>
+        <div class="m_content pl50 pr50 pt10">
+	<a href="{:U('Tenant/NewRentRecord/')}" class="btn">填写租金记录</a>	
+	<if condition="$list">
+		<table>
+		<thead>
+			<tr>
+				<th class="w160 pt10 pb10 f14 lt1 brf">单据编号</th>
+				<th class="w160 pt10 pb10 f14 lt1 brf">合同编号</th>
+				<th class="w160 pt10 pb10 f14 lt1 brf">租金</th>
+				<th class="w160 pt10 pb10 f14 lt1 brf">交费周期</th>
+				<th class="w160 pt10 pb10 f14 lt1 brf">水费</th>
+				<th class="w160 pt10 pb10 f14 lt1 brf">电费</th>
+				<th class="w160 pt10 pb10 f14 lt1 brf">总金额</th>
+				<th class="w160 pt10 pb10 f14 lt1 brf">交费日期</th>
+				<th class="w160 pt10 pb10 f14 lt1 brf">创建日期</th>
+				<th class="w160 pt10 pb10 f14 lt1 brf"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist name="list" id="vo">
+			<tr>
+				<td class="tl pt10 pb10 p130 f14 bdbc">{$vo.ZJJL_DJBH}</td>
+				<td class="tl pt10 pb10 p130 f14 bdbc"><a href="{:U('/Tenant/DetailContract/',array('htbh'=>$vo['ZJJL_HTBH']))}">{$vo.ZJJL_HTBH}</a></td>
+				<td class="tl pt10 pb10 p130 f14 bdbc">{$vo.ZJJL_ZJ|number_format=2}</td>
+				<td class="tl pt10 pb10 p130 f14 bdbc">{$vo.ZJJL_ZJQR|date_format="Y/m/d"} 到 {$vo.ZJJL_ZJZR|date_format="Y/m/d"}</td>
+				<td class="tl pt10 pb10 p130 f14 bdbc">{$vo.ZJJL_SF|number_format=2}</td>
+				<td class="tl pt10 pb10 p130 f14 bdbc">{$vo.ZJJL_DF|number_format=2}</td>
+				<td class="tl pt10 pb10 p130 f14 bdbc">{$vo.ZJJL_ZJE|number_format=2}</td>
+				<td class="tl pt10 pb10 p130 f14 bdbc">{$vo.ZJJL_JFSJ|date_format="Y-m-d"}</td>
+				<td class="tl pt10 pb10 p130 f14 bdbc">{$vo.ZJJL_CJSJ|date_format="Y-m-d"}</td>
+				<td class="tl pt10 pb10 p130 f14 bdbc"><a class="btn btn-small" href="{:U('Tenant/DetailRentRecord/',array('id'=>$vo['ZJJL_DJBH']))}"><i class="icon-pencil"></i> 详情</a> <a class="btn btn-small" href="{:U('Tenant/RemoveRentRecord/',array('id'=>$vo['ZJJL_DJBH']))}" onclick="if(!confirm('是否删除？')) return false;"><i class="icon-remove"></i> 删除</a></td>
+			</tr>
+			</volist>
+		</tbody>
+	</table>
+	<div class="page">
+		{$page}
+	</div>
+	<else />
+	<div class="alert alert-info">
+		<a class="close" data-dismiss="alert">×</a>
+		<h4 class="alert-heading">提示!</h4>
+		暂无记录！
+	</div>
+	</if>
+</div>   
+    <div class="m_bottom mb50"></div>
+
+</block>
