@@ -5,8 +5,8 @@ return array(
 	'DB_HOST'=>'localhost',
 	'DB_NAME'=>'M5G2HKL7K0010548',
 	//'DB_DSN' => 'sqlsrv:Server=localhost;Database=M5G2HKL7K0010548',
-	'DB_USER' => 'payz',
-	'DB_PWD' => 'zaq12wsx',
+	'DB_USER' => 'sa',
+	'DB_PWD' => 'asdasd',
 	'DB_PREFIX' => 'USR_',
 	'DB_PORT' => '',
 

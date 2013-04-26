@@ -6,35 +6,45 @@
   <include file="public:globalhead" />
   <block name="head"></block>
   <script type="text/javascript">
-  function mouseover() {
-    var el = document.getElementById('menu_sub');
-        el.className = "submenu abs pt10 pl10 pr10 db";
-    }
-  function mouseout() {
-    var el = document.getElementById('menu_sub');
-        el.className = "submenu abs pt10 pl10 pr10 dn";
-    }		
-  </script>
+$(function(){
+  var leftWidth = $("#left-side").outerWidth();
+  var winWidth = $(window).width();
+  $("#r-content").css('width', winWidth - leftWidth);
+  $(window).resize(function() {
+    $("#r-content").css('width', winWidth - leftWidth);
+  }); 
+});
+</script>
 </head>
 
 <body>
-  <div class="top">
-    <div class="header w980 auto pt10 rel">
-      <div class="logo pt20 ml50"><a href="{:U('/Index')}" title="平安社区业主网站"></a><img src="/static/img/logo.png" /></a></div>
-    <div class="nav abs pt2"><span class="dib w120 pl20"><i class="avatar_icon vn mr2"></i>{$Think.session.yzxx_xm}</span> <span class="dib w50 tc"><a href="{:U('/Yzxx/Setting')}" class="c3"><i class="set_icon vn mr2"></i>设置</a></span> <span class="c9">|</span> <span class="dib w50 tc "><a href="{:U('/Login/Logout')}" class="c3"><i class="out_icon vn mr2"></i>退出</a></span></div>
-    <div class="menu abs"><span class="dib w160 tc"><a href="{:U('/Index')}" class="f14 cw b lt2"><i class="home_icon"></i>首页</a></span> 
-      <span  class="dib w140 tc"  onmouseover="mouseover()" onmouseout="mouseout()"><a href="#" class="f14 cw b" >租户管理<i class="arrow_icon ml2"></i></a>
-        <ul class="submenu abs pt10 pl10 pr10 dn" id="menu_sub">
-          <li><a href="{:U('/Tenant/Contract')}" class=" f14 c3 db tc bbc">租户合同</a></li>
-          <li><a href="{:U('/Tenant/RentRecord')}" class=" f14 c3 db tc btf bbc">租金记录</a></li>
-          <li><a href="{:U('/Tenant/CreditEvaluation')}" class=" f14 c3 db tc btf bbc">诚信评估表</a></li>
-          <li><a href="{:U('/Tenant/BlackList')}" class=" f14 c3 db tc btf">黑名单</a></li>
-        </ul>
-      </span> 
-      <span  class="dib w140 tc"><a href="{:U('/Tenant/Bill')}" class="f14 cw b">管理费对账单</a></span>
+<div class="header rel">
+  <div class="ml50 fl">
+    <img src="__ROOT__/static/images/logo.jpg" />
+  </div>
+  <div class="snav fr pr50 pt50">
+    <a href="{:U('/Yzxx/Setting')}" class="userset dib cw mr20 pl10 pr10" style=" line-height:25px; background:#68b0e0"> <i class="user_icon mr5 vt" ></i>
+      用户设置
+    </a>
+    <a href="{:U('/Login/Logout')}" class="userset dib cw mr20 pl10 pr10" style=" line-height:25px; background:#68b0e0"> <i class="out_icon mr5 vt" ></i>
+      退出登录
+    </a>
+  </div>
+</div>
+<div class="navt pl50"><i class="tx_icon vt mr5"></i>欢迎您：<span style="color:#faf702;" class="mr50">蔡景松</span>{$now}</div>
+<div id="left-side" class="mt10 fl">
+  <div class="left_top cw">
+      <i class="gl_icon vt mr5  mt10"></i>管理信息
     </div>
-    </div><!-- /.header -->
-  </div><!-- /.top -->
+    <ul class="left_main">
+      <volist name="menu" id="m" key='k'>
+        <li>
+          <a href="{$m.url}" class="li_{$key} dib tin mb10">{$m.lang}</a>
+        </li>
+      </volist>
+     </ul> 
+    <div class="left_bottom"></div>
+</div>
   <div class="w980 auto mt10">
 	  <block name="content">内容</block>
   

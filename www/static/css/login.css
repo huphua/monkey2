@@ -1,0 +1,88 @@
+.top{ background:url(../images/top_bg2.jpg) repeat-x;}
+.header{background:url(../images/top_bg.jpg) no-repeat; height:92px; }
+.logo{ width:199px; height:40px;}
+.nav{ width:289px; height:28px; background:url(../images/icon.png) -39px 0 no-repeat;left: 500px;top: 0;}
+.avatar_icon,.set_icon,.out_icon,.bhome_icon{ width:16px; height:16px;  }
+.avatar_icon{background:url(../images/icon.png) -34px -104px; }
+.set_icon{background:url(../images/icon.png) -33px -129px; }
+.out_icon{background:url(../images/icon.png) -33px -155px; }
+.menu{ width:493px; height:31px; background:url(../images/icon.png) -5px -27px; top:31px; left: 410px; padding-top:35px  }
+.home_icon{ width:20px; height:20px; background:url(../images/icon.png) 0 -107px; vertical-align:-5px}
+.arrow_icon{ width:14px; height:14px; background:url(../images/icon.png) 0 -130px;}
+.submenu{ width:129px; height:130px; background:url(../images/icon.png) -154px -97px no-repeat; top:53px; left:150px; }
+.submenu li a{ line-height:29px; }
+.submenu li a:hover{text-decoration:none; background:#e4e6e7;}
+.m_top{ background:url(../images/main_tbg.png) no-repeat; height:77px}
+.bhome_icon{background:url(../images/icon.png) 0 -152px;}
+.m_content{ background:url(../images/main_mbg.png) repeat-y;}
+.m_content table{ border-collapse: collapse; }
+.m_content table th{ background:#c5ebfd;}
+.m_content table td{ line-height:30px;}
+.m_bottom{ height:110px; background:url(../images/main_bbg.png) no-repeat;}
+.ht_icon,.fy_icon,.hm_icon{ width:18px; height:18px; }
+.ht_icon{ background:url(../images/icon.png) -60px -107px; vertical-align:-4px}
+.fy_icon{ background:url(../images/icon.png) -60px -131px; vertical-align:-4px}
+.hm_icon{background:url(../images/icon.png) -60px -156px; vertical-align:-4px}
+.more{ background:#2094ce;}
+.page a{text-decoration:none; padding:3px 6px;}
+.page a:hover{ background:#2094ce; color:#fff;}
+.page .a_h{ background:#2094ce; color:#fff;}
+.ht_form select{width:210px; height:30px; border:1px solid #84d3fa; background:#fff; padding:3px; margin-right:5px;}
+.ht_form_sub{ width:75px; height:30px; background:url(../images/icon.png) -418px -118px; border:0; }
+.ht_form_sub:hover{ background:url(../images/icon.png) -418px -152px;}
+.write{ width:169px; height:37px; background:url(../images/icon.png) -324px -187px;}
+.write:hover{background:url(../images/icon.png) -324px -228px;}
+.htitle{ padding:10px 20px; background:#c5ebfd;}
+.zj_form li{ padding:10px;}
+.zj_form_sel{width:210px; height:26px; border:1px solid #84d3fa; padding:3px; }
+.zj_form_inp{width:250px; height:26px;border:1px solid #84d3fa;}
+.zj_form_sinp{width:119px; height:26px;border:1px solid #84d3fa;}
+.zj_form_text{width:250px; height:90px; border:1px solid #84d3fa;}
+.zj_form_sub{ width:86px; height:30px; background: url(../images/icon.png) 0 -194px; border:0}
+.zj_form_sub:hover{ background: url(../images/icon.png) 0 -233px;}
+.zj_form_but{ width:59px; height:30px; background: url(../images/icon.png) -92px -194px; border:0}
+.zj_form_but:hover{ background: url(../images/icon.png) -92px -233px;}
+
+/*  登录页面 */
+body#login {
+  background: #0c83be;
+}
+#login .wrap {
+  width: 980px;
+  margin: 0 auto;
+}
+.login-form {
+  width: 850px;
+  height: 700px;
+  top: 50%;
+  left: 50%;
+  margin: -350px 0 0 -425px;
+  position: absolute;
+  background: url(../images/login_03.jpg) no-repeat left top;
+}
+.login-form form {
+  padding: 238px 0 0 345px;
+}
+.login-form .text-field {
+  width: 230px;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 5px;
+  margin-bottom: 17px;
+  border: 0;
+  background: transparent;
+}
+.rmbme {
+  padding-bottom: 10px;
+}
+.rmbme input {
+  display: inline-block;
+  margin-right: 5px;
+}
+#submit {
+  width: 178px;
+  height: 51px;
+  border: 0;
+  cursor: pointer;
+  background: url(../images/bt_sumbit.gif) no-repeat left top;
+}
