@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="__ROOT__/static/css/admin.css" />
 <script type="text/javascript" src="__ROOT__/static/js/global.js?v=<?php echo (C("JS_GLOBAL_VER")); ?>"></script>
 <script type="text/javascript" src="__ROOT__/static/js/jquery.js"></script><script type="text/javascript" src="__ROOT__/static/js/bootstrap.js"></script>
+<script type="text/javascript" src="__ROOT__/static/js/jquery.pin.js"></script>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
 <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -44,12 +45,14 @@
 
   <script type="text/javascript">
 $(function(){
+
   var leftWidth = $("#left-side").outerWidth();
   var winWidth = $(window).width();
   $("#r-content").css('width', winWidth - leftWidth);
   $(window).resize(function() {
     $("#r-content").css('width', winWidth - leftWidth);
   }); 
+  $(".left_main").pin({containerSelector: "#left-side", minWidth: 940});  
 });
 </script>
 </head>
@@ -60,6 +63,9 @@ $(function(){
     <img src="__ROOT__/static/images/logo.jpg" />
   </div>
   <div class="snav fr pr50 pt50">
+    <a href="<?php echo U('/Yzxx/Changepassword');?>" class="userset dib cw mr20 pl10 pr10" style=" line-height:25px; background:#68b0e0"> <i class="user_icon mr5 vt" ></i>
+      修改密码
+    </a>
     <a href="<?php echo U('/Yzxx/Setting');?>" class="userset dib cw mr20 pl10 pr10" style=" line-height:25px; background:#68b0e0"> <i class="user_icon mr5 vt" ></i>
       用户设置
     </a>
@@ -68,7 +74,7 @@ $(function(){
     </a>
   </div>
 </div>
-<div class="navt pl50"><i class="tx_icon vt mr5"></i>欢迎您：<span style="color:#faf702;" class="mr50">蔡景松</span><?php echo ($now); ?></div>
+<div class="navt pl50"><i class="tx_icon vt mr5"></i>欢迎您：<span style="color:#faf702;" class="mr50"><?php echo ($name); ?></span><?php echo ($now); ?></div>
 <div id="left-side" class="mt10 fl">
   <div class="left_top cw">
       <i class="gl_icon vt mr5  mt10"></i>管理信息
@@ -112,10 +118,19 @@ $(function(){
                        <a class="btn" href="javascript:history.go(-1);">返回</a>
                    </div>
                </fieldset>
+             </form>
        </div>
        <div class="m_bottom mb50"></div>
 
   
+  </div>
+  <div id="footer">
+  <div class = "muted credit">  
+  <div class="cb"></div>  
+      <div class="footer tc mt10">
+        <div class="pt20 c6">平安社区网站 版权所有 Copyright  2008-2011  E-mail: admin@admin.com</div>
+      </div>
+   </div>   
   </div>
 </body>
 </html>

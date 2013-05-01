@@ -17,24 +17,16 @@ class LoginAction extends Action {
     }
 
     public function login(){        
-    	$YZXX = D("yzxx");
-    	if (!$YZXX->create($_POST,4)){
-    		$this->error($YZXX->getError());
-    	}
-    	else{
+    	    $YZXX = D("Lyb");        
     		$condition = array();
-    		$condition['YZXX_SFZH'] = $this->_post('YZXX_SFZH');
+    		$condition['LYB_BH'] = $this->_post('lyb_bh');
     		$yz = $YZXX->where($condition)->find();
-    		if($yz){
-    			//密码为空暂时不作处理直接登录
-                //dump(md5($this->_post('YZXX_MM')));
-               // dump($yz['YZXX_MM']);
-               // exit;
-    			if($yz['YZXX_MM']==md5($this->_post('YZXX_MM'))){
-                    session('yzxx_sfzh', $yz['YZXX_SFZH']);
-                    session('yzxx_xm', $yz['YZXX_XM']);
-                    cookie('sfzh', $yz['YZXX_SFZH'], 2592000);
-                    cookie('mm', $yz['YZXX_MM'], 2592000);
+    		if($yz){    			
+    			if($yz['LYB_MM']==md5($this->_post('lyb_mm'))){
+                    session('yzxx_sfzh', $yz['LYB_BH']);
+                    session('yzxx_xm', $yz['LYB_FZR1']);
+                    cookie('sfzh', $yz['LYB_BH'], 2592000);
+                    cookie('mm', $yz['LYB_MM'], 2592000);
                     cookie('rm', $this->_post('remember_me'), 2592000);
                     $next = session('next');
                     $_url = $next ? $next : U('/Index');
@@ -43,11 +35,10 @@ class LoginAction extends Action {
 	    			//$this->success('登录成功！',$next?$next:U('/Index'));
     			}
     			else
-    				$this->error('密码错误！');
+                 $this->error('密码错误！');
     		}
     		else
-    			$this->error('业主信息不存在！');
-    	}
+    			$this->error('楼宇信息不存在！');
     }
 
     public function logout(){

@@ -16,8 +16,8 @@
     <div class="login-form">
       <form id ="loginform" method="post" accept-charset="utf-8" action="<?php echo U('Login/login');?>" >
         <p><input type="hidden" name="next" value="<?php echo ($next); ?>" /></p>
-        <p><input id ="YZXX_SFZH" class="text-field" type="text" name="YZXX_SFZH" value="<?php echo ($username); ?>" /></p>
-        <p><input id="YZXX_MM" class="text-field" type="password" name="YZXX_MM" value="" /></p>        
+        <p><input id ="lyb_bh" class="text-field" type="text" name="lyb_bh" value="<?php echo ($username); ?>" /></p>
+        <p><input id="lyb_mm" class="text-field" type="password" name="lyb_mm" value="" /></p>        
         <p class="rmbme"><input id='remember_me' type="checkbox" name="remember_me" value="1" <?php if($rm) echo "checked"; ?>  />记住我</p>
         <div class="alert alert-error" id="container"></div>
         <input type="submit" id ="submit" value="" /></p>

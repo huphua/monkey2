@@ -1,19 +1,19 @@
 $(function(){
     $('#loginform').validate({        
         'rules':{
-            'YZXX_SFZH':{
+            'lyb_bh':{
                 'required':true
             },
-            'YZXX_MM':{
+            'lyb_mm':{
                 'required':true
             }
         },
         'messages':{
-            'YZXX_SFZH':{
-                'required':'请输入你的身份证号码'
+            'lyb_bh':{
+                'required':'请输入账号'
             },
-           'YZXX_MM':{
-               'required':'请输入你的网站登录密码'
+           'lyb_mm':{
+               'required':'请输入登录密码'
            }
         },
         errorPlacement:function(error,element){

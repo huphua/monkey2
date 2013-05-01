@@ -34,6 +34,39 @@ class YzxxAction extends BaseAction {
         $this->success('保存成功！',U('/Yzxx/Index'));
     }
 
+    public function Changepassword(){
+          $this->display();
+    }
+
+    public function SavePassword(){
+          $oldpassword =!empty($_POST['oldpassword'])?md5($_POST['oldpassword']):'';
+          $newpassword =!empty($_POST['newpassword'])?md5($_POST['newpassword']):'';
+          $ly = M('Lyb');
+          $condition = array();
+          $condition['LYB_BH']=  session('yzxx_sfzh');
+          $condition['LYB_MM']=  $oldpassword;
+          $savetion = array();
+          $savetion['LYB_MM'] = $newpassword;
+          $yz = $ly->where($condition)->find();
+          $wheretion = array();
+          $wheretion['LYB_BH'] = session('yzxx_sfzh');
+          if($yz){
+              $a = $ly->where($wheretion)->save($savetion);
+             if($a) {
+                 $link[] = array('href' => U('/Index/index'), 'text' =>'首页');
+                 $this->sys_msg('修改成功',0,$link);
+             }else{
+                 $this->sys_msg('修改失败，请重新输入',0);
+             }
+
+          }else{
+              $this->sys_msg('原密码错误，请重新输入',0);
+          }
+
+
+          
+    }
+
     public function Setting(){
         $this->sz=M('yzsz')->where("yzsz_sfzh='".session('yzxx_sfzh')."'")->find();
         //dump($this->sz);
