@@ -63,8 +63,8 @@ class BaseAction extends Action {
             {
                 $links[0]['text'] = $GLOBALS['_LANG']['go_back'];
                 $links[0]['href'] = 'javascript:history.go(-1)';
+                $links[0]['href'] = 'javascript:history.go(-1)';
             }
-
             $this->assign('ur_here',     $GLOBALS['_LANG']['system_message']);
             $this->assign('msg_detail',  $msg_detail);
             $this->assign('msg_type',    $msg_type);
